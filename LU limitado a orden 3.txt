@@ -1,0 +1,33 @@
+        for (int i = 0; i < width; i++){
+            U[0][i] = A[0][i];
+        }
+
+        //1ra columna de L
+        for (int i = 1; i < large; i++){
+            L[i][0] = A[i][0] / U[0][0];
+        }
+
+        //2do renglon de U 
+        int k = 0;
+        int f = 1;
+
+        for(int i = f; i < width; i++)
+        {
+             U[f][i] = A[f][i]-L[f][k]*U[k][i];
+        }
+ 
+        //2da columna de L
+        int c = 1;
+        L[2][c] = (A[2][c]-L[2][k]*U[k][c]) / U[c][c];
+   
+        //3er renglon de U
+        U[2][2] = A[2][2]-L[2][k]*U[k][2]-L[2][k+1]*U[k+1][2];
+        k++;
+
+        //d[0]=b[0];
+        //d[1]=b[1]-L[1][0]*d[0];
+        //d[2]=b[2]-L[2][0]*d[0]-L[2][1]*d[1];
+
+	//X[2]=d[2]/U[2][2];
+        //X[1]=(d[1]-U[1][2]*X[2])/U[1][1];
+       // X[0]=(d[0]-U[0][1]*X[1]-U[0][2]*X[2])/U[0][0];
